@@ -1,0 +1,19 @@
+<div class="container">
+  <select [formControl]="comboBox" (change)="onChange($event.target.selectedIndex)">
+    <option *ngFor="let source of sources" [ngValue]="source">
+      {{source.name}}
+    </option>
+  </select>
+      
+  <div class="filter-container">
+  <input type="text" [formControl]="inputKeyWord" placeholder="Type your text">
+  <button class="filter" (click)="onFilterClick()">Filter</button>
+  </div>  
+
+  <div>
+  <input type="checkbox" [formControl]="checkMyNews" id="mynews" name="mynews" (click)="onCheckMyNews($event.target.checked)">
+  <label for="mynews"> Only created by me</label>
+  </div>
+      
+  <button class="add" routerLink="add">Add Article</button>
+<div>

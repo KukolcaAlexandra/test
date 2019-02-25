@@ -1,0 +1,17 @@
+<div class="main-container">
+  <app-header [sourceName]="sourceName"></app-header>
+  <app-control-panel
+    (filterNews)="filterNews($event);"
+    (updateCount)="updateCount($event);">
+  </app-control-panel>
+  <div class="list">
+    <app-news-list 
+      [newsList]="currentNews" 
+      [source]="sourceName" 
+      [showLoadButton]="showLoadButton"
+      (loadNews)="loadNews($event);">
+    </app-news-list>
+  </div>
+</div>
+<footer>Powered by NewsAPI</footer>
+
