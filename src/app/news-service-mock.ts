@@ -4,6 +4,7 @@ import { NEWS, LOCAL_NEWS } from './mock-news';
 import { ApiService } from './api.service';
 import { INews, ISource } from './interfaces/news';
 import { initialSourceName, localSourceName } from './const';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class NewsServiceMock {
   sourceName: string = initialSourceName;
   previousSourceName: string;
   currentNews: INews;
+
+  ngOnInit() {
+    this.currentNews = NEWS[0][0];
+  }
 
   getSources() {
     this.sources = SOURCES;

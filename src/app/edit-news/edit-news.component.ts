@@ -14,7 +14,7 @@ export class EditNewsComponent implements OnInit {
   constructor(public route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.newsId = this.route.snapshot.params['id'];
+    this.newsId = this.route.snapshot.params.id;
     if (this.newsId) {
       this.title = 'Edit';
     }

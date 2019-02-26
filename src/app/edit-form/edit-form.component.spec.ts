@@ -7,6 +7,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NewsService } from '../news.service';
 import { NewsServiceMock } from '../news-service-mock';
 import { LOCAL_NEWS } from '../mock-news';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('EditFormComponent', () => {
   let component: EditFormComponent;
@@ -21,7 +23,21 @@ describe('EditFormComponent', () => {
         HttpClientTestingModule
       ],
       providers: [
-        { provide: NewsService, useClass: NewsServiceMock }
+        { provide: NewsService, useClass: NewsServiceMock },
+        { provide: ActivatedRoute, useValue: {
+          params: of({ id: 3 }),
+          snapshot: {
+            params: {
+              id: '1'
+            },
+            paramMap: {
+              get(name: string): string {
+                return '';
+              }
+            }
+          },
+        }
+      }
       ]
     }).compileComponents();
   }));
