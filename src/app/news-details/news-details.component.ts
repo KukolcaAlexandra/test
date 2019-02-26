@@ -20,7 +20,7 @@ export class NewsDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.newsId = this.route.snapshot.params['id'];
+    this.newsId = this.route.snapshot.params.id;
     this.newsService.updatedSourceName.subscribe((sourceName: string) => {
       this.sourceName = sourceName;
     });

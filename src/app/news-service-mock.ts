@@ -27,13 +27,6 @@ export class NewsServiceMock {
   getSources() {
     this.sources = SOURCES;
     this.updatedSources.emit(SOURCES);
-    /*this.apiService.getSources().subscribe(
-      (sources: ISource[]) => {
-        this.sources = sources;
-        this.updatedSources.emit(sources);
-      },
-      (error) => console.log(error)
-    );*/
   }
 
   getNews() {
@@ -43,17 +36,6 @@ export class NewsServiceMock {
     const sourceName = this.sources[this.selectedSource].name;
     this.sourceName = sourceName;
     this.updatedSourceName.emit(sourceName);
-
-    /*const sourceId = this.sources[this.selectedSource].id;
-    const sourceName = this.sources[this.selectedSource].name;
-    this.apiService.getNews(sourceId).subscribe(
-      (articles: INews[]) => {
-        this.articles = articles;
-        this.updatedNews.emit(articles);
-        this.sourceName = sourceName;
-        this.updatedSourceName.emit(sourceName);
-      }
-    );*/
   }
 
   getLocalNews() {
@@ -61,14 +43,6 @@ export class NewsServiceMock {
     this.updatedNews.emit(LOCAL_NEWS);
     this.sourceName = localSourceName;
     this.updatedSourceName.emit(localSourceName);
-    /*this.apiService.getLocalNews().subscribe(
-      (articles: any) => {
-        this.articles = articles;
-        this.updatedNews.emit(articles);
-        this.sourceName = localSourceName;
-        this.updatedSourceName.emit(localSourceName);
-      }
-    );*/
   }
 
   onCheckMyNews(checked: boolean) {
@@ -108,51 +82,18 @@ export class NewsServiceMock {
       this.currentNews = this.articles[id];
       this.updatedCurrentNews.emit(this.currentNews);
     }
-    /*if (this.sourceName === localSourceName) {
-      this.apiService.getNewsWithId(id).subscribe(
-        (news: INews) => {
-          this.currentNews = news;
-          this.updatedCurrentNews.emit(this.currentNews);
-        }
-      );
-    } else {
-      this.currentNews = this.articles[id];
-      this.updatedCurrentNews.emit(this.currentNews);
-    }*/
   }
 
   updateNews(news: INews) {
-    /*this.apiService.updateNews(news).subscribe(
-      () => {
-        console.log('update news');
-      }
-    );*/
   }
 
   addNews(news: INews) {
-    /*this.apiService.addNews(news).subscribe(
-      () => {
-        console.log('add news');
-      }
-    );*/
   }
 
   deleteNews(id: string) {
-    /*this.apiService.deleteNews(id).subscribe(
-      (res: any) => {
-        console.log('delete news');
-        this.getLocalNews();
-      }
-    );*/
   }
 
   logIn() {
-    /*this.apiService.logIn().subscribe(
-      (res: any) => {
-        console.log('log in');
-        console.log(res);
-      }
-    );*/
   }
 
 }

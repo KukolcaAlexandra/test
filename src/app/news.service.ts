@@ -38,22 +38,31 @@ export class NewsService {
     const sourceName = this.sources[this.selectedSource].name;
     this.apiService.getNews(sourceId).subscribe(
       (articles: INews[]) => {
-        this.articles = articles;
+        /*this.articles = articles;
         this.updatedNews.emit(articles);
         this.sourceName = sourceName;
-        this.updatedSourceName.emit(sourceName);
+        this.updatedSourceName.emit(sourceName);*/
+        this.changeData(articles, sourceName);
       },
       (error) => console.log(error)
     );
   }
 
+  changeData(articles, sourceName) {
+    this.articles = articles;
+    this.updatedNews.emit(articles);
+    this.sourceName = sourceName;
+    this.updatedSourceName.emit(sourceName);
+  }
+
   getLocalNews() {
     this.apiService.getLocalNews().subscribe(
       (articles: any) => {
-        this.articles = articles;
+        /*this.articles = articles;
         this.updatedNews.emit(articles);
         this.sourceName = localSourceName;
-        this.updatedSourceName.emit(localSourceName);
+        this.updatedSourceName.emit(localSourceName);*/
+        this.changeData(articles, localSourceName);
       }
     );
   }
@@ -65,15 +74,19 @@ export class NewsService {
       this.getLocalNews();
     } else {
       if (this.selectedSource >= 0) {
-        this.articles = this.previousNews;
+        /*this.articles = this.previousNews;
+        this.updatedNews.emit(this.articles);
         this.sourceName = this.previousSourceName;
-        this.updatedSourceName.emit(this.previousSourceName);
+        this.updatedSourceName.emit(this.previousSourceName);*/
+        this.changeData(this.previousNews, this.previousSourceName);
       } else {
-        this.articles = [];
+        const articles = [];
+        /*this.articles = articles;
+        this.updatedNews.emit(articles);
         this.sourceName = initialSourceName;
-        this.updatedSourceName.emit(initialSourceName);
+        this.updatedSourceName.emit(initialSourceName);*/
+        this.changeData(articles, initialSourceName);
       }
-      this.updatedNews.emit(this.articles);
     }
   }
 
@@ -103,24 +116,19 @@ export class NewsService {
 
   updateNews(news: INews) {
     this.apiService.updateNews(news).subscribe(
-      () => {
-        console.log('update news');
-      }
+      () => {}
     );
   }
 
   addNews(news: INews) {
     this.apiService.addNews(news).subscribe(
-      () => {
-        console.log('add news');
-      }
+      () => {}
     );
   }
 
   deleteNews(id: string) {
     this.apiService.deleteNews(id).subscribe(
       (res: any) => {
-        console.log('delete news');
         this.getLocalNews();
       }
     );
@@ -128,10 +136,7 @@ export class NewsService {
 
   logIn() {
     this.apiService.logIn().subscribe(
-      (res: any) => {
-        console.log('log in');
-        console.log(res);
-      }
+      (res: any) => {}
     );
   }
 

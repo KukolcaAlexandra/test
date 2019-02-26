@@ -40,5 +40,5 @@ describe('HeaderComponent', () => {
     component.sourceName = 'Test Title';
     fixture.detectChanges();
     expect(el.textContent).toContain('Test Title');
-  })
+  });
 });

@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
       this.currentNews = filteredList;
     }
 
-    if (keywords.length === 0) {
+    if (keywords.length === 0 && this.news) {
       this.currentNews = this.news.slice(0, this.newsCount);
     }
 

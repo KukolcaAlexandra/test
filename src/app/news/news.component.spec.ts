@@ -23,9 +23,6 @@ describe('NewsComponent', () => {
       providers: [
         { provide: NewsService, useClass: NewsServiceMock }
       ]
-      /*providers: [
-        { provide: ActivatedRoute, useClass: MockRouter }
-      ],*/
     })
     .compileComponents();
   }));
@@ -33,7 +30,6 @@ describe('NewsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewsComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -44,8 +40,8 @@ describe('NewsComponent', () => {
     component.news = NEWS[0][0];
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      let h1 = fixture.debugElement.query(By.css('.title'));
-      let el = h1.nativeElement;
+      const h1 = fixture.debugElement.query(By.css('.title'));
+      const el = h1.nativeElement;
       expect(el.textContent).toBe(component.news.title);
     });
   });
@@ -54,20 +50,27 @@ describe('NewsComponent', () => {
     component.news = NEWS[0][0];
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      let h1 = fixture.debugElement.query(By.css('.description'));
-      let el = h1.nativeElement;
+      const h1 = fixture.debugElement.query(By.css('.description'));
+      const el = h1.nativeElement;
       expect(el.textContent).toBe(component.news.description);
     });
   });
 
-  /*it('should set news publishedAt', () => {
-    component.news = NEWS[0][0];
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      let h1 = fixture.debugElement.query(By.css('.dateBlock'));
-      //let el = h1.nativeElement;
-      expect(el.textContent).toBe(component.news.publishedAt);
-    });
-  });*/
-  
+  it('should call editNews', () => {
+    expect(component.editNews()).toBe(undefined);
+  });
+
+  it('should call deleteNews', () => {
+    expect(component.deleteNews()).toBe(undefined);
+  });
+
+  it('should call filterNews', () => {
+    component.news = {
+      _id: '1',
+      author: '',
+      title: ''
+    };
+    component.ngOnInit();
+    expect(component.id).toEqual('1');
+  });
 });

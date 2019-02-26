@@ -10,8 +10,4 @@ export class AppComponent {
 
   constructor(private newsService: NewsService) { }
 
-  ngOnInit() {
-
-  }
-
 }

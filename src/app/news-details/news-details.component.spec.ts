@@ -1,12 +1,10 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, Route, ActivatedRouteSnapshot, Params} from '@angular/router';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { of } from 'rxjs';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NewsDetailsComponent } from './news-details.component';
-import { ActivatedRoute } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing'; 
-class MockRouter {
-  navigateByUrl(url: string) { return url; }
-}
 
 describe('NewsDetailsComponent', () => {
   let component: NewsDetailsComponent;
@@ -14,31 +12,35 @@ describe('NewsDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, HttpClientTestingModule ],
-      declarations: [ NewsDetailsComponent ],
-      providers: [
-        { provide: ActivatedRoute, useClass: MockRouter }
-    ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      declarations: [NewsDetailsComponent],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule ],
+
+      providers: [{
+        provide: ActivatedRoute, useValue: {
+          params: of({ id: 3 }),
+          snapshot: {
+            params: {
+              id: '1'
+            },
+            paramMap: {
+              get(name: string): string {
+                return '';
+              }
+            }
+          },
+        }
+      }],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
-  beforeEach(() => {
+  it('should sourcseName be undefined', () => {
     fixture = TestBed.createComponent(NewsDetailsComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
+    fixture.detectChanges();
+    expect(component.newsId).toEqual('1');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should newsId be undefined', () => {
-    expect(component.newsId).toBeUndefined();
-  });
-
-  it('should sourcseName be undefined', () => {
-    expect(component.sourceName).toBeUndefined();
-  });
 });
+
