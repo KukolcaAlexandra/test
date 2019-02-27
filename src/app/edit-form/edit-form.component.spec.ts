@@ -178,12 +178,20 @@ describe('EditFormComponent', () => {
     });
   }));
 
-  it('should set author of news', async(() => {
+  it('should set news parameters', async(() => {
+    const news = {
+      title: 'News',
+      author: 'AI'
+    };
     fixture = TestBed.createComponent(EditFormComponent);
     component = fixture.componentInstance;
     component.newsId = '1';
-    component.ngOnInit();
-    expect(component.news).toBeUndefined();
+    fixture.detectChanges();
+    // emulate this.newsService.updatedCurrentNews.emit(news);
+    component = fixture.componentInstance;
+    const input = fixture.debugElement.query(By.css('.title'));
+    const el = input.nativeElement;
+    expect(el.value).toEqual(news.title);
   }));
 
 });
