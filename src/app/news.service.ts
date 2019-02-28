@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { SOURCES } from './mock-news-sources';
+import { NEWS } from './mock-news';
 import { ApiService } from './api.service';
 import { INews, ISource } from './interfaces/news';
 import { initialSourceName, localSourceName } from './const';
@@ -138,6 +139,11 @@ export class NewsService {
     this.apiService.logIn().subscribe(
       (res: any) => {}
     );
+  }
+
+  updateCurrentNews() {
+    this.currentNews = NEWS[0][0];
+    this.updatedCurrentNews.emit(this.currentNews);
   }
 
 }

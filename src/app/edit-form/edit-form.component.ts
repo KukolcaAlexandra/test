@@ -70,4 +70,8 @@ export class EditFormComponent implements OnInit {
     this.submitted = true;
   }
 
+  update() {
+    this.newsService.updateCurrentNews();
+  }
+
 }

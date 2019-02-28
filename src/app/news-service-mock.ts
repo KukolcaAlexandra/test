@@ -101,4 +101,9 @@ export class NewsServiceMock {
   logIn() {
   }
 
+  updateCurrentNews() {
+    this.currentNews = NEWS[0][0];
+    this.updatedCurrentNews.emit(this.currentNews);
+  }
+
 }

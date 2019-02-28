@@ -9,6 +9,7 @@ import { NewsServiceMock } from '../news-service-mock';
 import { LOCAL_NEWS } from '../mock-news';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { NEWS } from '../mock-news';
 
 describe('EditFormComponent', () => {
   let component: EditFormComponent;
@@ -179,16 +180,14 @@ describe('EditFormComponent', () => {
   }));
 
   it('should set news parameters', async(() => {
-    const news = {
-      title: 'News',
-      author: 'AI'
-    };
+    const news = NEWS[0][0];
     fixture = TestBed.createComponent(EditFormComponent);
     component = fixture.componentInstance;
     component.newsId = '1';
     fixture.detectChanges();
+    component.update();
     // emulate this.newsService.updatedCurrentNews.emit(news);
-    component = fixture.componentInstance;
+    // component = fixture.componentInstance;
     const input = fixture.debugElement.query(By.css('.title'));
     const el = input.nativeElement;
     expect(el.value).toEqual(news.title);
